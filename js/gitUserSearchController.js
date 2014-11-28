@@ -1,4 +1,6 @@
-githubUserSearch.controller('GitUserSearchController', function($scope) {
+githubUserSearch.controller('GitUserSearchController', function($scope, $resource) {
+
+    searchResource = $resource('https://api.github.com/search/users');
 
     $scope.searchResult = {
         "items": [{
@@ -17,7 +19,9 @@ githubUserSearch.controller('GitUserSearchController', function($scope) {
     }
 
     $scope.doSearch = function() {
-        console.log($scope.searchTerm);
+        $scope.searchResult = searchResource.get({
+            q: $scope.searchTerm
+        });
         $scope.searchTerm = "";
     };
 
