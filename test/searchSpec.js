@@ -15,4 +15,11 @@ describe('GitUserSearchController', function() {
         expect(scope.searchTerm).toBeUndefined();
     });
 
+    it('displays search results when you search', function() {
+        scope.searchTerm = "gypsydave5";
+        scope.doSearch();
+        scope.$apply(); //forces Angular to resolve all pending promises. Kewl.
+        expect(scope.searchResult).toEqual([]);
+    });
+
 });
